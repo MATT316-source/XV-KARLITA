@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Invitación XV · Karla Mayté</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@300;400;600;700&family=Dancing+Script:wght@400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #dcebf5;
+            font-family: 'Quicksand', sans-serif;
+            color: #1f4057;
+            padding: 16px 12px 40px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .invitacion {
+            max-width: 480px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(4px);
+            border-radius: 48px 48px 32px 32px;
+            padding: 20px 16px 30px;
+            box-shadow: 0 12px 30px rgba(20, 50, 70, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-toggle {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 10px;
+        }
+
+        .menu-btn {
+            background: rgba(190, 224, 245, 0.25);
+            backdrop-filter: blur(8px);
+            border: none;
+            border-radius: 60px;
+            padding: 12px 18px;
+            font-size: 1.6rem;
+            color: rgba(31, 84, 114, 0.7);
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .menu-btn i { font-size: 1.8rem; }
+        .menu-btn span { font-family: 'Great Vibes', cursive; font-size: 1.2rem; letter-spacing: 1px; }
+
+        .dropdown-menu {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+            border-radius: 40px;
+            padding: 16px 20px;
+            margin-top: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+            display: none;
+            flex-direction: column;
+            gap: 10px;
+            border: 1px solid rgba(180, 210, 235, 0.2);
+        }
+
+        .dropdown-menu a {
+            text-decoration: none;
+            color: rgba(30, 68, 94, 0.75);
+            font-weight: 600;
+            padding: 8px 12px;
+            border-radius: 60px;
+            background: rgba(210, 232, 248, 0.15);
+            transition: 0.2s;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-left: 4px solid rgba(143, 197, 224, 0.3);
+        }
+        .dropdown-menu a i { width: 24px; color: rgba(63, 123, 158, 0.6); }
+        .dropdown-menu a:hover { background: rgba(184, 216, 240, 0.3); color: rgba(10, 44, 63, 0.8); }
+        .dropdown-menu.open { display: flex; }
+
+        .seccion {
+            scroll-margin-top: 80px;
+            margin: 28px 0 20px;
+            padding: 18px 12px;
+            border-radius: 48px;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(4px);
+            box-shadow: 0 6px 18px rgba(150, 190, 215, 0.04);
+            transition: 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        .seccion:first-of-type { margin-top: 0; }
+
+        /* PORTADA estilo imagen referencia */
+        .portada {
+            background-image: url('images (1).jpg');
+            background-size: cover;
+            background-position: center 25%;
+            min-height: 500px;
+            position: relative;
+            border-radius: 48px;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+        }
+
+        .portada::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.05) 40%, rgba(0,0,0,0.3) 80%, rgba(0,0,0,0.5) 100%);
+            border-radius: 48px;
+            z-index: 1;
+        }
+
+        .portada .nombre-superior {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.4rem;
+            color: #fff;
+            text-shadow: 0 4px 30px rgba(0,0,0,0.6), 0 2px 10px rgba(0,0,0,0.4);
+            text-align: center;
+            letter-spacing: 2px;
+            padding: 30px 20px 10px;
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, transparent 100%);
+            border-radius: 48px 48px 0 0;
+        }
+
+        .portada .contenido-inferior {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            padding: 20px 20px 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: linear-gradient(0deg, rgba(0,0,0,0.4) 0%, transparent 100%);
+            border-radius: 0 0 48px 48px;
+        }
+
+        .portada .texto-15 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-style: italic;
+            font-size: 2.6rem;
+            color: #fff;
+            text-shadow: 0 3px 25px rgba(0,0,0,0.6), 0 2px 10px rgba(0,0,0,0.3);
+            letter-spacing: 4px;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        .portada .fecha-inferior {
+            font-family: 'Playfair Display', serif;
+            font-weight: 400;
+            font-size: 1.8rem;
+            color: rgba(255,255,255,0.9);
+            text-shadow: 0 2px 20px rgba(0,0,0,0.6);
+            letter-spacing: 3px;
+            margin-top: 6px;
+            text-align: center;
+            background: rgba(0,0,0,0.15);
+            padding: 6px 24px;
+            border-radius: 40px;
+            backdrop-filter: blur(4px);
+        }
+
+        .portada .separador-estrella {
+            color: rgba(255,255,255,0.5);
+            font-size: 1.2rem;
+            letter-spacing: 10px;
+            margin: 4px 0;
+        }
+
+        /* PADRES */
+        .padres {
+            text-align: center;
+            padding: 24px 12px;
+            background: linear-gradient(145deg, rgba(230, 245, 255, 0.25), rgba(200, 225, 245, 0.15));
+            border-radius: 60px;
+            box-shadow: inset 0 0 30px rgba(150, 200, 230, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+        }
+        .padres::before {
+            content: "✦ ✦ ✦";
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.4rem;
+            letter-spacing: 12px;
+            color: rgba(139, 186, 217, 0.2);
+            opacity: 0.6;
+        }
+        .padres h3 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.2rem;
+            color: rgba(30, 90, 122, 0.65);
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+        .padres p {
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.8rem;
+            color: rgba(31, 85, 115, 0.65);
+            margin: 6px 0;
+        }
+        .padres .padrinos {
+            margin-top: 20px;
+            border-top: 1px dashed rgba(170, 207, 235, 0.3);
+            padding-top: 18px;
+        }
+        .padres .padrinos p { font-size: 1.7rem; }
+        .mariposa i {
+            font-size: 2.8rem;
+            color: rgba(176, 217, 240, 0.5);
+            filter: drop-shadow(0 0 12px rgba(176, 217, 240, 0.1));
+            animation: destello 2.5s infinite alternate;
+        }
+        @keyframes destello {
+            0% { opacity: 0.3; transform: scale(0.9) rotate(-5deg); }
+            100% { opacity: 0.8; transform: scale(1.2) rotate(5deg); }
+        }
+
+        .sobre-mensaje {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: linear-gradient(135deg, rgba(230, 244, 254, 0.3), rgba(205, 227, 242, 0.2));
+            border-radius: 80px 80px 40px 40px;
+            padding: 30px 16px 28px;
+            position: relative;
+            border: 2px solid rgba(201, 225, 242, 0.2);
+            box-shadow: 0 8px 25px rgba(80, 140, 190, 0.03);
+        }
+        .sobre-icon {
+            font-size: 4.8rem;
+            color: rgba(88, 147, 179, 0.5);
+            margin-bottom: 6px;
+            filter: drop-shadow(0 6px 8px rgba(0,0,0,0.01));
+        }
+        .mensaje-carta {
+            background: rgba(249, 252, 255, 0.4);
+            padding: 28px 20px;
+            border-radius: 40px 40px 20px 20px;
+            box-shadow: 0 8px 20px rgba(60, 120, 170, 0.02);
+            font-size: 1.15rem;
+            line-height: 1.7;
+            max-width: 340px;
+            color: rgba(26, 74, 99, 0.7);
+            border-left: 8px solid rgba(176, 210, 234, 0.3);
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 400;
+            text-align: center;
+            transform: rotate(-0.5deg);
+            position: relative;
+            font-style: italic;
+        }
+        .mensaje-carta::before {
+            content: "✧";
+            font-size: 2.8rem;
+            color: rgba(176, 210, 234, 0.3);
+            position: absolute;
+            top: -20px;
+            left: 20px;
+        }
+        .mensaje-carta::after {
+            content: "✧";
+            font-size: 2.0rem;
+            color: rgba(176, 210, 234, 0.3);
+            position: absolute;
+            bottom: -12px;
+            right: 20px;
+        }
+        .sobre-mensaje .detalle-pluma {
+            margin-top: 12px;
+            font-size: 1.8rem;
+            color: rgba(123, 179, 209, 0.4);
+        }
+
+        .contador {
+            background: rgba(217, 235, 247, 0.25);
+            border-radius: 60px;
+            padding: 28px 12px 24px;
+            text-align: center;
+            box-shadow: inset 0 0 20px rgba(100, 170, 210, 0.02);
+        }
+        .contador-tiempo {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            font-family: 'Dancing Script', cursive;
+            font-weight: 600;
+            font-size: 2.2rem;
+            color: rgba(18, 64, 90, 0.65);
+            flex-wrap: wrap;
+        }
+        .contador-tiempo div {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 16px;
+            border-radius: 60px;
+            min-width: 70px;
+            backdrop-filter: blur(4px);
+            font-family: 'Dancing Script', cursive;
+            font-weight: 600;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.01);
+        }
+        .contador-tiempo span {
+            font-size: 2.5rem;
+            display: block;
+            font-family: 'Dancing Script', cursive;
+            font-weight: 700;
+        }
+        .latido {
+            animation: latido 1.2s infinite;
+        }
+        @keyframes latido {
+            0% { transform: scale(1); }
+            30% { transform: scale(1.06); }
+            60% { transform: scale(1); }
+        }
+        .mensaje-dia {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: rgba(18, 74, 102, 0.7);
+            background: rgba(199, 226, 245, 0.25);
+            display: inline-block;
+            padding: 8px 28px;
+            border-radius: 60px;
+            margin: 14px 0 6px;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.4rem;
+        }
+
+        .fotos-instant {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 18px;
+            flex-wrap: wrap;
+        }
+        .polaroid {
+            background: rgba(255, 255, 255, 0.35);
+            padding: 8px 8px 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.02);
+            transform: rotate(-2deg);
+            border-radius: 6px 6px 20px 20px;
+            width: 130px;
+        }
+        .polaroid img {
+            width: 100%;
+            height: 130px;
+            object-fit: cover;
+            border-radius: 4px;
+            background: rgba(211, 228, 240, 0.2);
+        }
+        .polaroid:last-child { transform: rotate(3deg); }
+
+        .lugar-item {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 32px;
+            padding: 14px;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+        .lugar-item img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 30px;
+            margin-bottom: 8px;
+            background: rgba(179, 211, 234, 0.2);
+        }
+        .lugar-item h4 {
+            color: rgba(30, 90, 122, 0.7);
+        }
+        .lugar-item p {
+            color: rgba(31, 85, 115, 0.6);
+        }
+        .lugar-item a {
+            display: inline-block;
+            background: rgba(88, 147, 179, 0.6);
+            color: rgba(255, 255, 255, 0.85);
+            padding: 10px 20px;
+            border-radius: 60px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 6px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.01);
+        }
+
+        .vestimenta-grid {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .vestimenta-grid img {
+            width: 100px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 30px;
+            background: rgba(179, 203, 217, 0.2);
+            border: 4px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.01);
+        }
+        .vestimenta-grid + p {
+            color: rgba(29, 79, 107, 0.65);
+        }
+
+        .regalos {
+            text-align: center;
+            background: linear-gradient(145deg, rgba(217, 234, 245, 0.25), rgba(192, 220, 238, 0.15));
+            border-radius: 60px;
+            padding: 28px 16px;
+            font-size: 1.2rem;
+            position: relative;
+            border: 1px solid rgba(181, 212, 233, 0.2);
+            box-shadow: 0 6px 20px rgba(80, 150, 200, 0.02);
+        }
+        .regalos .cofre {
+            font-size: 4.5rem;
+            color: rgba(184, 148, 60, 0.5);
+            filter: drop-shadow(0 8px 12px rgba(0,0,0,0.02));
+            margin-bottom: 8px;
+        }
+        .regalos .cofre i {
+            animation: brillo 3s infinite alternate;
+        }
+        @keyframes brillo {
+            0% { text-shadow: 0 0 8px rgba(247, 217, 138, 0.15); }
+            100% { text-shadow: 0 0 30px rgba(247, 217, 138, 0.3), 0 0 60px rgba(247, 217, 138, 0.1); }
+        }
+        .regalos p {
+            font-weight: 500;
+            color: rgba(28, 78, 107, 0.7);
+        }
+        .regalos .detalle-sobres {
+            font-size: 2.2rem;
+            margin-top: 10px;
+            color: rgba(73, 130, 163, 0.4);
+        }
+
+        .confirmar {
+            border-radius: 60px;
+            padding: 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 420px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-image: url('piclumen-1762370993641.png');
+            background-size: cover;
+            background-position: center 20%;
+            background-repeat: no-repeat;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 25px rgba(60, 130, 180, 0.03);
+        }
+
+        .confirmar-overlay {
+            background: rgba(20, 50, 70, 0.15);
+            padding: 28px 18px 24px;
+            border-radius: 60px;
+            width: 100%;
+            height: 100%;
+            min-height: 420px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .confirmar h3 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.6rem;
+            color: rgba(240, 250, 255, 0.85);
+            text-shadow: 0 4px 20px rgba(0,0,0,0.25);
+            margin-bottom: 4px;
+        }
+
+        .confirmar .corazones {
+            font-size: 2.2rem;
+            color: rgba(255, 143, 171, 0.8);
+            animation: latido 1.5s infinite;
+            display: inline-block;
+            text-shadow: 0 0 20px rgba(255, 100, 130, 0.15);
+        }
+
+        .confirmar .nota {
+            font-style: italic;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(4px);
+            padding: 10px 20px;
+            border-radius: 60px;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            margin: 6px 0 12px;
+            font-weight: 500;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .confirmar .subtitulo {
+            color: rgba(240, 250, 255, 0.85);
+            font-weight: 400;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.15);
+            margin-bottom: 10px;
+            font-size: 1rem;
+            background: rgba(0,0,0,0.05);
+            padding: 4px 16px;
+            border-radius: 60px;
+            backdrop-filter: blur(2px);
+        }
+
+        .confirmar-botones {
+            display: flex;
+            flex-direction: row;
+            gap: 14px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 6px 0 8px;
+        }
+
+        .btn-confirmar {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(6px);
+            color: rgba(255, 255, 255, 0.95);
+            padding: 12px 24px;
+            border-radius: 60px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+            transition: 0.25s;
+            border: 2px solid rgba(255,255,255,0.2);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.15);
+        }
+
+        .btn-confirmar i {
+            font-size: 1.4rem;
+        }
+
+        .btn-confirmar:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        }
+
+        .btn-confirmar.mama {
+            background: rgba(255, 215, 215, 0.45);
+            border-color: rgba(255, 180, 180, 0.25);
+        }
+
+        .btn-confirmar.yeimi {
+            background: rgba(215, 235, 255, 0.45);
+            border-color: rgba(180, 215, 240, 0.25);
+        }
+
+        .music-btn {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(8px);
+            border: none;
+            padding: 8px 18px;
+            border-radius: 60px;
+            font-size: 1.2rem;
+            color: rgba(29, 75, 102, 0.7);
+            margin-bottom: 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.01);
+            transition: 0.2s;
+        }
+        .music-btn i { font-size: 1.8rem; }
+
+        .pie-invitacion {
+            text-align: center;
+            font-size: 0.8rem;
+            color: rgba(79, 124, 153, 0.4);
+            margin-top: 12px;
+        }
+
+        @media (max-width: 380px) {
+            .portada .nombre-superior { font-size: 2.6rem; }
+            .portada .texto-15 { font-size: 2.0rem; }
+            .portada .fecha-inferior { font-size: 1.4rem; }
+            .padres p { font-size: 1.4rem; }
+            .contador-tiempo { font-size: 1.8rem; }
+            .confirmar h3 { font-size: 2.0rem; }
+            .btn-confirmar { padding: 10px 16px; font-size: 0.95rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="invitacion">
+
+    <div class="menu-toggle">
+        <button class="menu-btn" id="menuBtn"><i class="fas fa-bars"></i><span>Menú</span></button>
+    </div>
+    <div class="dropdown-menu" id="dropdownMenu">
+        <a href="#portada"><i class="fas fa-home"></i> Inicio</a>
+        <a href="#padres"><i class="fas fa-users"></i> Padres & Padrinos</a>
+        <a href="#mensaje"><i class="fas fa-envelope"></i> Mensaje</a>
+        <a href="#contador"><i class="fas fa-clock"></i> Contador</a>
+        <a href="#lugar"><i class="fas fa-map-pin"></i> Dónde y Cuándo</a>
+        <a href="#vestimenta"><i class="fas fa-tshirt"></i> Vestimenta</a>
+        <a href="#regalos"><i class="fas fa-gift"></i> Regalos</a>
+        <a href="#confirmar"><i class="fas fa-check-circle"></i> Confirmar</a>
+    </div>
+
+    <button class="music-btn" id="musicToggle"><i class="fas fa-music"></i> <span id="musicLabel">Música</span></button>
+
+    <!-- PORTADA estilo imagen referencia -->
+    <section class="seccion portada" id="portada">
+        <div class="nombre-superior">Karla Mayté</div>
+        <div class="contenido-inferior">
+            <div class="texto-15">MIS XV AÑOS</div>
+            <div class="separador-estrella">✦ ✦ ✦</div>
+            <div class="fecha-inferior">17 de Julio de 2027</div>
+        </div>
+    </section>
+
+    <!-- PADRES -->
+    <section class="seccion padres" id="padres">
+        <h3>En compañía de mis padres</h3>
+        <p>Gloria Jeannethe Alcantar Toledo</p>
+        <p>Carlos Villa Hernandez</p>
+        <div class="padrinos mariposa">
+            <i class="fas fa-star" style="color: rgba(154, 201, 229, 0.5); font-size: 2.2rem;"></i>
+            <p style="font-size: 1.8rem; margin: 4px 0;">Mis Padrinos</p>
+            <p>Jose Carlos Bañuelos</p>
+            <p>Sabina Jimenez</p>
+            <i class="fas fa-chess-queen" style="color: rgba(176, 211, 234, 0.4); font-size: 2rem; animation: destello 2s infinite alternate;"></i>
+        </div>
+        <div style="margin-top: 6px; font-size: 2.2rem; opacity: 0.06; letter-spacing: 12px;">✦ ✦ ✦</div>
+    </section>
+
+    <!-- MENSAJE -->
+    <section class="seccion" id="mensaje">
+        <div class="sobre-mensaje">
+            <div class="sobre-icon"><i class="fas fa-envelope-open-text"></i></div>
+            <div class="mensaje-carta">
+                "Me haría mucha ilusión que me acompañes a celebrar mis XV años. Es un momento especial para mí y me encantaría compartirlo con las personas que más quiero. Tu presencia haría que esta noche sea aún más inolvidable."
+            </div>
+            <div class="detalle-pluma"><i class="fas fa-feather-alt"></i> <i class="fas fa-feather-alt" style="margin-left:12px;"></i></div>
+        </div>
+    </section>
+
+    <!-- CONTADOR -->
+    <section class="seccion contador" id="contador">
+        <div class="contador-tiempo latido" id="contadorDisplay">
+            <div><span id="dias">00</span> días</div>
+            <div><span id="horas">00</span> h</div>
+            <div><span id="minutos">00</span> m</div>
+            <div><span id="segundos">00</span> s</div>
+        </div>
+        <div class="mensaje-dia" id="mensajeDia">✨ ¡Falta muy poco! ✨</div>
+        <div class="fotos-instant">
+            <div class="polaroid"><img src="https://images.pexels.com/photos/3348746/pexels-photo-3348746.jpeg?auto=compress&cs=tinysrgb&w=300" alt="Foto Karla"></div>
+            <div class="polaroid"><img src="https://images.pexels.com/photos/2864073/pexels-photo-2864073.jpeg?auto=compress&cs=tinysrgb&w=300" alt="Foto Karla 2"></div>
+        </div>
+    </section>
+
+    <!-- LUGAR -->
+    <section class="seccion" id="lugar">
+        <h2 style="font-family: 'Great Vibes', cursive; font-size: 2.4rem; color: rgba(31, 99, 133, 0.7); text-align:center;">¿Cuándo y Dónde?</h2>
+        <div class="lugar">
+            <div class="lugar-item">
+                <img src="https://images.pexels.com/photos/260922/pexels-photo-260922.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Iglesia">
+                <h4>MISA</h4>
+                <p>Parroquia San Miguel Arcángel</p>
+                <p>Calle Principal 123, Ciudad</p>
+                <a href="https://maps.google.com/?q=Parroquia+San+Miguel+Arcángel" target="_blank"><i class="fas fa-map-marked-alt"></i> Google Maps</a>
+            </div>
+            <div class="lugar-item">
+                <img src="https://images.pexels.com/photos/260922/pexels-photo-260922.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Salón Fiesta">
+                <h4>FIESTA</h4>
+                <p>Salón Eventos Los Jardines</p>
+                <p>Av. Las Flores 456, Ciudad</p>
+                <a href="https://maps.google.com/?q=Salón+Eventos+Los+Jardines" target="_blank"><i class="fas fa-map-marked-alt"></i> Google Maps</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- VESTIMENTA -->
+    <section class="seccion" id="vestimenta">
+        <h3 style="font-family: 'Great Vibes', cursive; font-size: 2.2rem; color: rgba(31, 99, 133, 0.7); text-align:center;">Código de Vestimenta</h3>
+        <div class="vestimenta-grid">
+            <img src="https://images.pexels.com/photos/1043474/pexels-photo-1043474.jpeg?auto=compress&cs=tinysrgb&w=200" alt="formal 1">
+            <img src="https://images.pexels.com/photos/2043590/pexels-photo-2043590.jpeg?auto=compress&cs=tinysrgb&w=200" alt="formal 2">
+            <img src="https://images.pexels.com/photos/1468379/pexels-photo-1468379.jpeg?auto=compress&cs=tinysrgb&w=200" alt="formal 3">
+        </div>
+        <p style="text-align:center; margin-top:10px;">Traje formal / elegante</p>
+    </section>
+
+    <!-- REGALOS -->
+    <section class="seccion regalos" id="regalos">
+        <div class="cofre"><i class="fas fa-box-open"></i></div>
+        <p style="font-weight: 700; font-size: 1.4rem; color: rgba(26, 78, 107, 0.7);">TU PRESENCIA ES MI MEJOR REGALO</p>
+        <p style="margin: 8px 0;">Pero si deseas contribuir con un detalle especial, una lluvia de sobres será muy bien recibida con cariño y gratitud.</p>
+        <div class="detalle-sobres"><i class="fas fa-envelope"></i> <i class="fas fa-envelope" style="margin:0 10px;"></i> <i class="fas fa-envelope"></i></div>
+    </section>
+
+    <!-- CONFIRMAR -->
+    <section class="seccion confirmar" id="confirmar">
+        <div class="confirmar-overlay">
+            <div class="corazones"><i class="fas fa-heart"></i> <i class="fas fa-heart" style="color:rgba(255, 143, 171, 0.8);"></i> <i class="fas fa-heart"></i></div>
+            <h3>¡Confirma tu asistencia!</h3>
+            <div class="nota">"Quiero compartir este momento tan esperado contigo"</div>
+            <div class="subtitulo">Por favor ayúdanos confirmando tu asistencia</div>
+
+            <div class="confirmar-botones">
+                <a class="btn-confirmar mama" href="https://wa.me/521234567890?text=Hola%20mamá%20Gloria!%20Confirmo%20mi%20asistencia%20a%20los%20XV%20de%20Karla" target="_blank">
+                    <i class="fas fa-user-check"></i> CONFIRMAR A MAMÁ
+                </a>
+                <a class="btn-confirmar yeimi" href="https://wa.me/521234567890?text=Hola%20Yeimi!%20Confirmo%20mi%20asistencia%20a%20los%20XV%20de%20Karla" target="_blank">
+                    <i class="fas fa-user-check"></i> CONFIRMAR A KARLITA
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <div class="pie-invitacion">✨ Karla Mayté · XV Años ✨</div>
+</div>
+
+<audio id="bgMusic" loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+    (function(){
+        const menuBtn = document.getElementById('menuBtn');
+        const dropdown = document.getElementById('dropdownMenu');
+        menuBtn.addEventListener('click', function(e){
+            e.stopPropagation();
+            dropdown.classList.toggle('open');
+        });
+        document.addEventListener('click', function(e){
+            if(!dropdown.contains(e.target) && e.target !== menuBtn){
+                dropdown.classList.remove('open');
+            }
+        });
+
+        const musicToggle = document.getElementById('musicToggle');
+        const bgMusic = document.getElementById('bgMusic');
+        const musicLabel = document.getElementById('musicLabel');
+        let musicOn = false;
+        musicToggle.addEventListener('click', function(){
+            if(musicOn){
+                bgMusic.pause();
+                musicLabel.textContent = 'Música';
+                musicToggle.innerHTML = '<i class="fas fa-music"></i> <span id="musicLabel">Música</span>';
+            } else {
+                bgMusic.play().catch(()=>{});
+                musicLabel.textContent = 'On';
+                musicToggle.innerHTML = '<i class="fas fa-volume-up"></i> <span id="musicLabel">On</span>';
+            }
+            musicOn = !musicOn;
+        });
+
+        const targetDate = new Date('July 17, 2027 00:00:00').getTime();
+
+        function actualizarContador() {
+            const ahora = new Date().getTime();
+            let distancia = targetDate - ahora;
+            if (distancia < 0) distancia = 0;
+            const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
+            const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
+
+            document.getElementById('dias').textContent = String(dias).padStart(2,'0');
+            document.getElementById('horas').textContent = String(horas).padStart(2,'0');
+            document.getElementById('minutos').textContent = String(minutos).padStart(2,'0');
+            document.getElementById('segundos').textContent = String(segundos).padStart(2,'0');
+
+            const msj = document.getElementById('mensajeDia');
+            if (dias > 30) msj.textContent = '💖 ¡Falta un poco, pero la emoción crece!';
+            else if (dias > 15) msj.textContent = '🌸 ¡Ya falta menos! Cada día cuenta.';
+            else if (dias > 7) msj.textContent = '✨ ¡La espera se siente!';
+            else if (dias > 1) msj.textContent = '🎉 ¡Muy pronto será el gran día!';
+            else if (dias === 1) msj.textContent = '💫 ¡Mañana es el día!';
+            else if (dias === 0 && (horas > 0 || minutos > 0)) msj.textContent = '🎊 ¡Hoy es el gran día!';
+            else if (distancia === 0) msj.textContent = '🎂 ¡Felices XV años, Karla!';
+        }
+
+        actualizarContador();
+        setInterval(actualizarContador, 1000);
+    })();
+</script>
+</body>
+</html>
