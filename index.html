@@ -613,6 +613,73 @@
             margin-top: 12px;
         }
 
+        /* Overlay de bienvenida para activar el audio */
+        .audio-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(8px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            cursor: pointer;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .audio-overlay-content {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px);
+            padding: 40px 30px;
+            border-radius: 60px;
+            text-align: center;
+            max-width: 320px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .audio-overlay-content i {
+            font-size: 4rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 16px;
+            display: block;
+            animation: pulso 1.5s infinite;
+        }
+
+        .audio-overlay-content h2 {
+            font-family: 'Great Vibes', cursive;
+            color: #fff;
+            font-size: 2.2rem;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+        }
+
+        .audio-overlay-content p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+            font-weight: 300;
+        }
+
+        @keyframes pulso {
+            0% { transform: scale(1); opacity: 0.6; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.6; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .audio-overlay.oculto {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.6s ease;
+        }
+
         @media (max-width: 380px) {
             .portada .nombre-superior { font-size: 2.6rem; }
             .portada .texto-15 { font-size: 2.0rem; }
@@ -625,6 +692,16 @@
     </style>
 </head>
 <body>
+
+<!-- OVERLAY DE BIENVENIDA PARA ACTIVAR EL AUDIO -->
+<div class="audio-overlay" id="audioOverlay">
+    <div class="audio-overlay-content">
+        <i class="fas fa-music"></i>
+        <h2>Karla Mayté</h2>
+        <p>Toca en cualquier lugar para comenzar la música</p>
+    </div>
+</div>
+
 <div class="invitacion">
 
     <div class="menu-toggle">
@@ -762,6 +839,7 @@
 
 <script>
     (function(){
+        // ---- MENÚ DESPLEGABLE ----
         const menuBtn = document.getElementById('menuBtn');
         const dropdown = document.getElementById('dropdownMenu');
         menuBtn.addEventListener('click', function(e){
@@ -774,23 +852,77 @@
             }
         });
 
-        const musicToggle = document.getElementById('musicToggle');
+        // ---- MÚSICA CON OVERLAY DE BIENVENIDA ----
         const bgMusic = document.getElementById('bgMusic');
+        const musicToggle = document.getElementById('musicToggle');
         const musicLabel = document.getElementById('musicLabel');
+        const audioOverlay = document.getElementById('audioOverlay');
         let musicOn = false;
-        musicToggle.addEventListener('click', function(){
-            if(musicOn){
+
+        // Función para iniciar la música
+        function iniciarMusica() {
+            if (musicOn) return;
+            
+            bgMusic.play().then(() => {
+                musicOn = true;
+                musicLabel.textContent = 'On';
+                musicToggle.innerHTML = '<i class="fas fa-volume-up"></i> <span id="musicLabel">On</span>';
+                
+                // Ocultar el overlay con animación
+                audioOverlay.classList.add('oculto');
+                setTimeout(() => {
+                    audioOverlay.style.display = 'none';
+                }, 600);
+            }).catch((err) => {
+                console.log('Error al reproducir:', err);
+                // Si falla, mostramos el overlay de nuevo para que el usuario intente de nuevo
+                audioOverlay.style.display = 'flex';
+                audioOverlay.classList.remove('oculto');
+            });
+        }
+
+        // Evento de clic en el overlay para iniciar la música
+        audioOverlay.addEventListener('click', function(e) {
+            e.stopPropagation();
+            iniciarMusica();
+        });
+
+        // También intentamos iniciar al hacer clic en cualquier parte de la página (por si el overlay falla)
+        document.addEventListener('click', function(e) {
+            // Si el overlay está visible y no se ha iniciado la música, intentamos iniciar
+            if (!audioOverlay.classList.contains('oculto') && !musicOn) {
+                iniciarMusica();
+            }
+        });
+
+        // Control manual del botón de música (ya sea que se haya iniciado o no)
+        musicToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            
+            if (musicOn) {
+                // Si está sonando, pausar
                 bgMusic.pause();
+                musicOn = false;
                 musicLabel.textContent = 'Música';
                 musicToggle.innerHTML = '<i class="fas fa-music"></i> <span id="musicLabel">Música</span>';
             } else {
-                bgMusic.play().catch(()=>{});
+                // Si está pausada, reanudar
+                bgMusic.play().catch(() => {});
+                musicOn = true;
                 musicLabel.textContent = 'On';
                 musicToggle.innerHTML = '<i class="fas fa-volume-up"></i> <span id="musicLabel">On</span>';
+                
+                // Si el overlay aún está visible, ocultarlo
+                if (!audioOverlay.classList.contains('oculto')) {
+                    audioOverlay.classList.add('oculto');
+                    setTimeout(() => {
+                        audioOverlay.style.display = 'none';
+                    }, 600);
+                }
             }
-            musicOn = !musicOn;
         });
 
+        // ---- CONTADOR ----
         const targetDate = new Date('July 17, 2027 00:00:00').getTime();
 
         function actualizarContador() {
