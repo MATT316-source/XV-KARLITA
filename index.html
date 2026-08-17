@@ -613,37 +613,43 @@
             margin-top: 12px;
         }
 
-        /* Overlay de bienvenida para activar el audio */
+        /* Overlay de bienvenida mejorado */
         .audio-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(8px);
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(12px);
             display: flex;
             justify-content: center;
             align-items: center;
             z-index: 9999;
-            cursor: pointer;
             animation: fadeIn 0.5s ease;
+            cursor: pointer;
         }
 
         .audio-overlay-content {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(12px);
-            padding: 40px 30px;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(16px);
+            padding: 45px 35px;
             border-radius: 60px;
             text-align: center;
-            max-width: 320px;
+            max-width: 340px;
             border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.2);
+            transform: scale(1);
+            transition: transform 0.3s ease;
         }
 
-        .audio-overlay-content i {
-            font-size: 4rem;
-            color: rgba(255, 255, 255, 0.7);
+        .audio-overlay-content:hover {
+            transform: scale(1.02);
+        }
+
+        .audio-overlay-content .icono-musica {
+            font-size: 4.5rem;
+            color: rgba(255, 255, 255, 0.8);
             margin-bottom: 16px;
             display: block;
             animation: pulso 1.5s infinite;
@@ -652,15 +658,44 @@
         .audio-overlay-content h2 {
             font-family: 'Great Vibes', cursive;
             color: #fff;
-            font-size: 2.2rem;
-            margin-bottom: 8px;
+            font-size: 2.4rem;
+            margin-bottom: 6px;
             text-shadow: 0 2px 20px rgba(0,0,0,0.3);
         }
 
-        .audio-overlay-content p {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 1rem;
+        .audio-overlay-content .subtitle {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
             font-weight: 300;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .audio-overlay-content .btn-tocar {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: #fff;
+            padding: 14px 40px;
+            border-radius: 60px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            backdrop-filter: blur(4px);
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        .audio-overlay-content .btn-tocar:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .audio-overlay-content .btn-tocar i {
+            font-size: 1.6rem;
         }
 
         @keyframes pulso {
@@ -677,7 +712,7 @@
         .audio-overlay.oculto {
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.6s ease;
+            transition: opacity 0.8s ease;
         }
 
         @media (max-width: 380px) {
@@ -688,17 +723,24 @@
             .contador-tiempo { font-size: 1.8rem; }
             .confirmar h3 { font-size: 2.0rem; }
             .btn-confirmar { padding: 10px 16px; font-size: 0.95rem; }
+            .audio-overlay-content { padding: 30px 20px; }
+            .audio-overlay-content h2 { font-size: 2rem; }
+            .audio-overlay-content .btn-tocar { padding: 12px 28px; font-size: 1rem; }
         }
     </style>
 </head>
 <body>
 
-<!-- OVERLAY DE BIENVENIDA PARA ACTIVAR EL AUDIO -->
+<!-- OVERLAY DE BIENVENIDA CON BOTÓN GRANDE -->
 <div class="audio-overlay" id="audioOverlay">
     <div class="audio-overlay-content">
-        <i class="fas fa-music"></i>
+        <i class="fas fa-music icono-musica"></i>
         <h2>Karla Mayté</h2>
-        <p>Toca en cualquier lugar para comenzar la música</p>
+        <div class="subtitle">✦ XV Años ✦</div>
+        <button class="btn-tocar" id="btnTocarAudio">
+            <i class="fas fa-play"></i> Tocar para escuchar
+        </button>
+        <p style="color: rgba(255,255,255,0.3); font-size: 0.7rem; margin-top: 12px;">Presiona el botón para activar la música</p>
     </div>
 </div>
 
@@ -720,7 +762,7 @@
 
     <button class="music-btn" id="musicToggle"><i class="fas fa-music"></i> <span id="musicLabel">Música</span></button>
 
-    <!-- PORTADA estilo imagen referencia -->
+    <!-- PORTADA -->
     <section class="seccion portada" id="portada">
         <div class="nombre-superior">Karla Mayté</div>
         <div class="contenido-inferior">
@@ -852,11 +894,12 @@
             }
         });
 
-        // ---- MÚSICA CON OVERLAY DE BIENVENIDA ----
+        // ---- MÚSICA CON OVERLAY MEJORADO ----
         const bgMusic = document.getElementById('bgMusic');
         const musicToggle = document.getElementById('musicToggle');
         const musicLabel = document.getElementById('musicLabel');
         const audioOverlay = document.getElementById('audioOverlay');
+        const btnTocar = document.getElementById('btnTocarAudio');
         let musicOn = false;
 
         // Función para iniciar la música
@@ -872,41 +915,42 @@
                 audioOverlay.classList.add('oculto');
                 setTimeout(() => {
                     audioOverlay.style.display = 'none';
-                }, 600);
+                }, 800);
             }).catch((err) => {
                 console.log('Error al reproducir:', err);
-                // Si falla, mostramos el overlay de nuevo para que el usuario intente de nuevo
-                audioOverlay.style.display = 'flex';
-                audioOverlay.classList.remove('oculto');
+                // Si falla, mostramos un mensaje en el botón
+                btnTocar.innerHTML = '<i class="fas fa-redo"></i> Intentar de nuevo';
+                btnTocar.style.animation = 'shake 0.5s ease';
+                setTimeout(() => {
+                    btnTocar.style.animation = '';
+                }, 500);
             });
         }
 
-        // Evento de clic en el overlay para iniciar la música
-        audioOverlay.addEventListener('click', function(e) {
+        // Evento del botón de tocar
+        btnTocar.addEventListener('click', function(e) {
             e.stopPropagation();
             iniciarMusica();
         });
 
-        // También intentamos iniciar al hacer clic en cualquier parte de la página (por si el overlay falla)
-        document.addEventListener('click', function(e) {
-            // Si el overlay está visible y no se ha iniciado la música, intentamos iniciar
-            if (!audioOverlay.classList.contains('oculto') && !musicOn) {
+        // También al hacer clic en el overlay (fuera del botón)
+        audioOverlay.addEventListener('click', function(e) {
+            // Si el clic no fue en el botón, igual intentamos iniciar
+            if (e.target !== btnTocar && !btnTocar.contains(e.target)) {
                 iniciarMusica();
             }
         });
 
-        // Control manual del botón de música (ya sea que se haya iniciado o no)
+        // Control manual del botón de música
         musicToggle.addEventListener('click', function(e) {
             e.stopPropagation();
             
             if (musicOn) {
-                // Si está sonando, pausar
                 bgMusic.pause();
                 musicOn = false;
                 musicLabel.textContent = 'Música';
                 musicToggle.innerHTML = '<i class="fas fa-music"></i> <span id="musicLabel">Música</span>';
             } else {
-                // Si está pausada, reanudar
                 bgMusic.play().catch(() => {});
                 musicOn = true;
                 musicLabel.textContent = 'On';
@@ -917,10 +961,17 @@
                     audioOverlay.classList.add('oculto');
                     setTimeout(() => {
                         audioOverlay.style.display = 'none';
-                    }, 600);
+                    }, 800);
                 }
             }
         });
+
+        // Si el usuario hace scroll o toca en la página, intentar iniciar (para móviles)
+        document.addEventListener('touchstart', function() {
+            if (!musicOn && !audioOverlay.classList.contains('oculto')) {
+                iniciarMusica();
+            }
+        }, { once: true });
 
         // ---- CONTADOR ----
         const targetDate = new Date('July 17, 2027 00:00:00').getTime();
@@ -951,6 +1002,17 @@
 
         actualizarContador();
         setInterval(actualizarContador, 1000);
+
+        // Animación shake para el botón si falla
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(-10px); }
+                75% { transform: translateX(10px); }
+            }
+        `;
+        document.head.appendChild(style);
     })();
 </script>
 </body>
