@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>Invitación XV · Karla Mayté</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@300;400;600;700&family=Dancing+Script:wght@400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@300;400;600;700&family=Dancing+Script:wght@400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -107,7 +107,6 @@
         }
         .seccion:first-of-type { margin-top: 0; }
 
-        /* PORTADA estilo imagen referencia */
         .portada {
             background-image: url('images (1).jpg');
             background-size: cover;
@@ -197,7 +196,6 @@
             margin: 4px 0;
         }
 
-        /* PADRES */
         .padres {
             text-align: center;
             padding: 24px 12px;
@@ -208,7 +206,7 @@
             position: relative;
         }
         .padres::before {
-            content: "✦ ✦ ✦";
+            content: "✦  ✦";
             position: absolute;
             top: -8px;
             left: 50%;
@@ -248,60 +246,355 @@
             100% { opacity: 0.8; transform: scale(1.2) rotate(5deg); }
         }
 
-        .sobre-mensaje {
+        /* CALENDARIO ESTILOS */
+        .calendario-container {
+            background: linear-gradient(135deg, rgba(227, 242, 253, 0.8), rgba(187, 222, 251, 0.6));
+            border-radius: 32px;
+            padding: 24px 20px 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 24px rgba(100, 181, 246, 0.12);
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(8px);
+        }
+
+        .calendario-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            padding: 0 8px;
+        }
+
+        .mes-nombre {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: rgba(21, 101, 192, 0.8);
+            letter-spacing: 3px;
+        }
+
+        .año {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.1rem;
+            color: rgba(66, 165, 245, 0.7);
+            font-weight: 600;
+        }
+
+        .calendario-dias-header {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 4px;
+            margin-bottom: 8px;
+            padding: 0 4px;
+        }
+
+        .calendario-dias-header span {
+            text-align: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: rgba(100, 181, 246, 0.8);
+            padding: 8px 0;
+        }
+
+        .calendario-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 4px;
+        }
+
+        .calendario-grid span {
+            text-align: center;
+            padding: 10px 0;
+            font-size: 0.95rem;
+            color: rgba(31, 99, 133, 0.6);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .dia-inactivo {
+            color: rgba(144, 202, 249, 0.4) !important;
+        }
+
+        .dia-especial {
+            background: linear-gradient(135deg, rgba(255, 182, 193, 0.3), rgba(255, 218, 233, 0.4));
+            color: rgba(194, 65, 102, 0.9) !important;
+            font-weight: 700;
+            position: relative;
+            border: 2px solid rgba(255, 182, 193, 0.5);
+            animation: pulse-calendar 2s infinite;
+        }
+
+        .dia-especial .corazon {
+            position: absolute;
+            top: -6px;
+            right: -4px;
+            font-size: 0.7rem;
+            color: rgba(233, 30, 99, 0.8);
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes pulse-calendar {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 182, 193, 0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 0 0 8px rgba(255, 182, 193, 0); }
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+        }
+
+        /* CARTA ELEGANTE */
+        .carta-container {
+            position: relative;
+            padding: 20px 10px 30px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            background: linear-gradient(135deg, rgba(230, 244, 254, 0.3), rgba(205, 227, 242, 0.2));
-            border-radius: 80px 80px 40px 40px;
-            padding: 30px 16px 28px;
+        }
+
+        .carta-marco {
             position: relative;
-            border: 2px solid rgba(201, 225, 242, 0.2);
-            box-shadow: 0 8px 25px rgba(80, 140, 190, 0.03);
+            width: 100%;
+            max-width: 360px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fdff 50%, #e3f2fd 100%);
+            border-radius: 16px;
+            padding: 50px 30px 40px;
+            box-shadow: 
+                0 10px 40px rgba(100, 181, 246, 0.2),
+                0 0 0 1px rgba(255, 255, 255, 0.8),
+                inset 0 0 60px rgba(187, 222, 251, 0.1);
+            border: 2px solid rgba(187, 222, 251, 0.5);
         }
-        .sobre-icon {
-            font-size: 4.8rem;
-            color: rgba(88, 147, 179, 0.5);
-            margin-bottom: 6px;
-            filter: drop-shadow(0 6px 8px rgba(0,0,0,0.01));
-        }
-        .mensaje-carta {
-            background: rgba(249, 252, 255, 0.4);
-            padding: 28px 20px;
-            border-radius: 40px 40px 20px 20px;
-            box-shadow: 0 8px 20px rgba(60, 120, 170, 0.02);
-            font-size: 1.15rem;
-            line-height: 1.7;
-            max-width: 340px;
-            color: rgba(26, 74, 99, 0.7);
-            border-left: 8px solid rgba(176, 210, 234, 0.3);
-            font-family: 'Quicksand', sans-serif;
-            font-weight: 400;
-            text-align: center;
-            transform: rotate(-0.5deg);
-            position: relative;
-            font-style: italic;
-        }
-        .mensaje-carta::before {
-            content: "✧";
-            font-size: 2.8rem;
-            color: rgba(176, 210, 234, 0.3);
+
+        /* Mariposas en las esquinas - AZULES */
+        .esquina-mariposa {
             position: absolute;
-            top: -20px;
-            left: 20px;
-        }
-        .mensaje-carta::after {
-            content: "✧";
-            font-size: 2.0rem;
-            color: rgba(176, 210, 234, 0.3);
-            position: absolute;
-            bottom: -12px;
-            right: 20px;
-        }
-        .sobre-mensaje .detalle-pluma {
-            margin-top: 12px;
+            width: 35px;
+            height: 35px;
             font-size: 1.8rem;
-            color: rgba(123, 179, 209, 0.4);
+            animation: mariposa-flota 4s ease-in-out infinite;
+            filter: hue-rotate(180deg) saturate(2);
+        }
+
+        .esquina-mariposa.top-left {
+            top: 8px;
+            left: 8px;
+            transform: rotate(-15deg);
+        }
+
+        .esquina-mariposa.top-right {
+            top: 8px;
+            right: 8px;
+            transform: rotate(15deg) scaleX(-1);
+            animation-delay: 0.5s;
+        }
+
+        .esquina-mariposa.bottom-left {
+            bottom: 8px;
+            left: 8px;
+            transform: rotate(15deg) rotate(180deg);
+            animation-delay: 1s;
+        }
+
+        .esquina-mariposa.bottom-right {
+            bottom: 8px;
+            right: 8px;
+            transform: rotate(-15deg) scaleX(-1) rotate(180deg);
+            animation-delay: 1.5s;
+        }
+
+        @keyframes mariposa-flota {
+            0%, 100% { transform: translateY(0) rotate(-5deg); }
+            50% { transform: translateY(-5px) rotate(5deg); }
+        }
+
+        /* Decoración superior */
+        .carta-decoracion-superior {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .carta-decoracion-superior .linea-ornamento {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .linea-ornamento .linea {
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(100, 181, 246, 0.5), transparent);
+        }
+
+        .linea-ornamento .diamante {
+            width: 8px;
+            height: 8px;
+            background: rgba(100, 181, 246, 0.6);
+            transform: rotate(45deg);
+        }
+
+        .carta-titulo {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.2rem;
+            color: rgba(66, 165, 245, 0.9);
+            margin-bottom: 8px;
+            text-shadow: 0 2px 8px rgba(100, 181, 246, 0.1);
+        }
+
+        .carta-subtitulo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            color: rgba(100, 181, 246, 0.7);
+            font-style: italic;
+            letter-spacing: 2px;
+        }
+
+        /* Contenido del mensaje */
+        .carta-contenido {
+            text-align: center;
+            margin: 24px 0;
+            position: relative;
+        }
+
+        .carta-texto {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.15rem;
+            line-height: 1.9;
+            color: rgba(31, 99, 133, 0.85);
+            font-style: italic;
+            padding: 0 10px;
+        }
+
+        .carta-texto::before,
+        .carta-texto::after {
+            content: '"';
+            font-family: 'Great Vibes', cursive;
+            font-size: 3rem;
+            color: rgba(100, 181, 246, 0.3);
+            line-height: 0;
+            vertical-align: -0.5rem;
+        }
+
+        .carta-texto::before {
+            margin-right: 8px;
+        }
+
+        .carta-texto::after {
+            margin-left: 8px;
+        }
+
+        /* Firma */
+        .carta-firma {
+            text-align: center;
+            margin-top: 24px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(187, 222, 251, 0.3);
+        }
+
+        .carta-firma .con-cariño {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            color: rgba(100, 181, 246, 0.7);
+            font-style: italic;
+            margin-bottom: 8px;
+        }
+
+        .carta-firma .nombre {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.4rem;
+            color: rgba(66, 165, 245, 0.95);
+            text-shadow: 0 2px 12px rgba(100, 181, 246, 0.2);
+        }
+
+        /* Sello de cera AZUL */
+        .sello-cera {
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #90caf9 0%, #64b5f6 50%, #42a5f5 100%);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 
+                0 6px 20px rgba(100, 181, 246, 0.5),
+                inset 0 2px 8px rgba(255, 255, 255, 0.5),
+                0 0 0 5px rgba(255, 255, 255, 0.4),
+                0 0 0 6px rgba(100, 181, 246, 0.2);
+            z-index: 10;
+            animation: sello-brillo 3s ease-in-out infinite;
+        }
+
+        .sello-cera i {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1.8rem;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+        }
+
+        @keyframes sello-brillo {
+            0%, 100% { 
+                box-shadow: 
+                    0 6px 20px rgba(100, 181, 246, 0.5),
+                    inset 0 2px 8px rgba(255, 255, 255, 0.5),
+                    0 0 0 5px rgba(255, 255, 255, 0.4),
+                    0 0 0 6px rgba(100, 181, 246, 0.2);
+            }
+            50% { 
+                box-shadow: 
+                    0 6px 25px rgba(100, 181, 246, 0.7),
+                    inset 0 2px 8px rgba(255, 255, 255, 0.6),
+                    0 0 0 5px rgba(255, 255, 255, 0.5),
+                    0 0 0 6px rgba(100, 181, 246, 0.3),
+                    0 0 30px rgba(100, 181, 246, 0.4);
+            }
+        }
+
+        /* Mariposas decorativas flotantes - AZULES */
+        .decoracion-mariposas {
+            margin-top: 30px;
+            display: flex;
+            gap: 25px;
+            opacity: 0.5;
+        }
+
+        .decoracion-mariposas .mariposa {
+            font-size: 2.2rem;
+            animation: mariposa-vuela 3s ease-in-out infinite;
+            filter: hue-rotate(180deg) saturate(2);
+        }
+
+        .decoracion-mariposas .mariposa:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+
+        .decoracion-mariposas .mariposa:nth-child(3) {
+            animation-delay: 1s;
+        }
+
+        @keyframes mariposa-vuela {
+            0%, 100% { transform: translateY(0) rotate(-10deg); }
+            50% { transform: translateY(-12px) rotate(10deg); }
+        }
+
+        /* Animación de entrada */
+        .carta-marco {
+            animation: carta-aparece 1s ease-out;
+        }
+
+        @keyframes carta-aparece {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .contador {
@@ -591,20 +884,49 @@
         .music-btn {
             background: rgba(255,255,255,0.15);
             backdrop-filter: blur(8px);
-            border: none;
-            padding: 8px 18px;
+            border: 2px solid rgba(76, 175, 80, 0.3);
+            padding: 8px 20px;
             border-radius: 60px;
-            font-size: 1.2rem;
-            color: rgba(29, 75, 102, 0.7);
+            font-size: 1.1rem;
+            color: rgba(29, 75, 102, 0.8);
             margin-bottom: 12px;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             cursor: pointer;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.01);
-            transition: 0.2s;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+            transition: all 0.3s ease;
+            font-weight: 600;
         }
-        .music-btn i { font-size: 1.8rem; }
+
+        .music-btn:hover {
+            background: rgba(255,255,255,0.25);
+            transform: scale(1.02);
+        }
+
+        .music-btn i { 
+            font-size: 1.6rem; 
+            transition: 0.3s;
+        }
+
+        .music-btn .estado {
+            font-size: 0.9rem;
+            font-weight: 700;
+            padding: 2px 12px;
+            border-radius: 30px;
+            background: rgba(255,255,255,0.1);
+            transition: 0.3s;
+        }
+
+        .music-btn .estado.on {
+            color: #4CAF50;
+            background: rgba(76, 175, 80, 0.15);
+        }
+
+        .music-btn .estado.off {
+            color: #f44336;
+            background: rgba(244, 67, 54, 0.15);
+        }
 
         .pie-invitacion {
             text-align: center;
@@ -613,7 +935,6 @@
             margin-top: 12px;
         }
 
-        /* Overlay de bienvenida mejorado */
         .audio-overlay {
             position: fixed;
             top: 0;
@@ -726,17 +1047,24 @@
             .audio-overlay-content { padding: 30px 20px; }
             .audio-overlay-content h2 { font-size: 2rem; }
             .audio-overlay-content .btn-tocar { padding: 12px 28px; font-size: 1rem; }
+            .music-btn { padding: 6px 14px; font-size: 0.9rem; }
+            .music-btn i { font-size: 1.3rem; }
+            .mes-nombre { font-size: 1.5rem; }
+            .calendario-grid span { padding: 8px 0; font-size: 0.85rem; }
+            .carta-marco { padding: 40px 20px 30px; }
+            .carta-titulo { font-size: 1.8rem; }
+            .carta-texto { font-size: 1rem; }
+            .carta-firma .nombre { font-size: 2rem; }
         }
     </style>
 </head>
 <body>
 
-<!-- OVERLAY DE BIENVENIDA CON BOTÓN GRANDE -->
 <div class="audio-overlay" id="audioOverlay">
     <div class="audio-overlay-content">
         <i class="fas fa-music icono-musica"></i>
         <h2>Karla Mayté</h2>
-        <div class="subtitle">✦ XV Años ✦</div>
+        <div class="subtitle">✦ XV Años </div>
         <button class="btn-tocar" id="btnTocarAudio">
             <i class="fas fa-play"></i> Tocar para escuchar
         </button>
@@ -760,19 +1088,20 @@
         <a href="#confirmar"><i class="fas fa-check-circle"></i> Confirmar</a>
     </div>
 
-    <button class="music-btn" id="musicToggle"><i class="fas fa-music"></i> <span id="musicLabel">Música</span></button>
+    <button class="music-btn" id="musicToggle">
+        <i class="fas fa-volume-up" id="musicIcon"></i>
+        <span class="estado on" id="musicEstado">ON</span>
+    </button>
 
-    <!-- PORTADA -->
     <section class="seccion portada" id="portada">
         <div class="nombre-superior">Karla Mayté</div>
         <div class="contenido-inferior">
             <div class="texto-15">MIS XV AÑOS</div>
-            <div class="separador-estrella">✦ ✦ ✦</div>
+            <div class="separador-estrella">  </div>
             <div class="fecha-inferior">17 de Julio de 2027</div>
         </div>
     </section>
 
-    <!-- PADRES -->
     <section class="seccion padres" id="padres">
         <h3>En compañía de mis padres</h3>
         <p>Gloria Jeannethe Alcantar Toledo</p>
@@ -784,21 +1113,107 @@
             <p>Sabina Jimenez</p>
             <i class="fas fa-chess-queen" style="color: rgba(176, 211, 234, 0.4); font-size: 2rem; animation: destello 2s infinite alternate;"></i>
         </div>
-        <div style="margin-top: 6px; font-size: 2.2rem; opacity: 0.06; letter-spacing: 12px;">✦ ✦ ✦</div>
+        <div style="margin-top: 6px; font-size: 2.2rem; opacity: 0.06; letter-spacing: 12px;">  </div>
     </section>
 
-    <!-- MENSAJE -->
     <section class="seccion" id="mensaje">
-        <div class="sobre-mensaje">
-            <div class="sobre-icon"><i class="fas fa-envelope-open-text"></i></div>
-            <div class="mensaje-carta">
-                "Me haría mucha ilusión que me acompañes a celebrar mis XV años. Es un momento especial para mí y me encantaría compartirlo con las personas que más quiero. Tu presencia haría que esta noche sea aún más inolvidable."
+        <h3 style="font-family: 'Great Vibes', cursive; font-size: 2.4rem; color: rgba(31, 99, 133, 0.7); text-align:center; margin-bottom: 20px;">Una Fecha Especial</h3>
+        
+        <div class="calendario-container">
+            <div class="calendario-header">
+                <span class="mes-nombre">JULIO</span>
+                <span class="año">2027</span>
             </div>
-            <div class="detalle-pluma"><i class="fas fa-feather-alt"></i> <i class="fas fa-feather-alt" style="margin-left:12px;"></i></div>
+            <div class="calendario-dias-header">
+                <span>D</span><span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span>
+            </div>
+            <div class="calendario-grid">
+                <span class="dia-inactivo">29</span>
+                <span class="dia-inactivo">30</span>
+                <span>1</span>
+                <span>2</span>
+                <span>3</span>
+                <span>4</span>
+                <span>5</span>
+                <span>6</span>
+                <span>7</span>
+                <span>8</span>
+                <span>9</span>
+                <span>10</span>
+                <span>11</span>
+                <span>12</span>
+                <span>13</span>
+                <span>14</span>
+                <span>15</span>
+                <span>16</span>
+                <span class="dia-especial">17<span class="corazon">♥</span></span>
+                <span>18</span>
+                <span>19</span>
+                <span>20</span>
+                <span>21</span>
+                <span>22</span>
+                <span>23</span>
+                <span>24</span>
+                <span>25</span>
+                <span>26</span>
+                <span>27</span>
+                <span>28</span>
+                <span>29</span>
+                <span>30</span>
+                <span>31</span>
+            </div>
+        </div>
+
+        <div class="carta-container">
+            <div class="carta-marco">
+                <!-- Mariposas AZULES en las esquinas -->
+                <div class="esquina-mariposa top-left"></div>
+                <div class="esquina-mariposa top-right">🦋</div>
+                <div class="esquina-mariposa bottom-left">🦋</div>
+                <div class="esquina-mariposa bottom-right"></div>
+
+                <!-- Decoración superior -->
+                <div class="carta-decoracion-superior">
+                    <div class="linea-ornamento">
+                        <div class="linea"></div>
+                        <div class="diamante"></div>
+                        <div class="linea"></div>
+                    </div>
+                    <div class="carta-titulo">Te invito a celebrar</div>
+                    <div class="carta-subtitulo"> MIS QUINCE AÑOS ✦</div>
+                </div>
+
+                <!-- Contenido del mensaje -->
+                <div class="carta-contenido">
+                    <p class="carta-texto">
+                        Me haría mucha ilusión que me acompañes a celebrar mis XV años. 
+                        Es un momento especial para mí y me encantaría compartirlo con 
+                        las personas que más quiero. Tu presencia haría que esta noche 
+                        sea aún más inolvidable.
+                    </p>
+                </div>
+
+                <!-- Firma -->
+                <div class="carta-firma">
+                    <div class="con-cariño">Con todo mi cariño,</div>
+                    <div class="nombre">Karla Mayté</div>
+                </div>
+
+                <!-- Sello de cera AZUL -->
+                <div class="sello-cera">
+                    <i class="fas fa-heart"></i>
+                </div>
+            </div>
+
+            <!-- Mariposas AZULES decorativas flotantes -->
+            <div class="decoracion-mariposas">
+                <span class="mariposa">🦋</span>
+                <span class="mariposa">🦋</span>
+                <span class="mariposa">🦋</span>
+            </div>
         </div>
     </section>
 
-    <!-- CONTADOR -->
     <section class="seccion contador" id="contador">
         <div class="contador-tiempo latido" id="contadorDisplay">
             <div><span id="dias">00</span> días</div>
@@ -806,14 +1221,13 @@
             <div><span id="minutos">00</span> m</div>
             <div><span id="segundos">00</span> s</div>
         </div>
-        <div class="mensaje-dia" id="mensajeDia">✨ ¡Falta muy poco! ✨</div>
+        <div class="mensaje-dia" id="mensajeDia">✨ ¡Falta muy poco! </div>
         <div class="fotos-instant">
             <div class="polaroid"><img src="https://images.pexels.com/photos/3348746/pexels-photo-3348746.jpeg?auto=compress&cs=tinysrgb&w=300" alt="Foto Karla"></div>
             <div class="polaroid"><img src="https://images.pexels.com/photos/2864073/pexels-photo-2864073.jpeg?auto=compress&cs=tinysrgb&w=300" alt="Foto Karla 2"></div>
         </div>
     </section>
 
-    <!-- LUGAR -->
     <section class="seccion" id="lugar">
         <h2 style="font-family: 'Great Vibes', cursive; font-size: 2.4rem; color: rgba(31, 99, 133, 0.7); text-align:center;">¿Cuándo y Dónde?</h2>
         <div class="lugar">
@@ -825,16 +1239,15 @@
                 <a href="https://maps.google.com/?q=Parroquia+San+Miguel+Arcángel" target="_blank"><i class="fas fa-map-marked-alt"></i> Google Maps</a>
             </div>
             <div class="lugar-item">
-                <img src="https://images.pexels.com/photos/260922/pexels-photo-260922.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Salón Fiesta">
+                <img src="hotel villa san jose.jpg" alt="Salón Fiesta">
                 <h4>FIESTA</h4>
-                <p>Salón Eventos Los Jardines</p>
-                <p>Av. Las Flores 456, Ciudad</p>
-                <a href="https://maps.google.com/?q=Salón+Eventos+Los+Jardines" target="_blank"><i class="fas fa-map-marked-alt"></i> Google Maps</a>
+                <p>Villa San José Hotel & Suites</p>
+                <p>Patzimba 77, Vista Bella, 58090 Morelia, Mich.</p>
+                <a href="https://maps.app.goo.gl/jRb65b1CdLLYxMHH6" target="_blank"><i class="fas fa-map-marked-alt"></i> Google Maps</a>
             </div>
         </div>
     </section>
 
-    <!-- VESTIMENTA -->
     <section class="seccion" id="vestimenta">
         <h3 style="font-family: 'Great Vibes', cursive; font-size: 2.2rem; color: rgba(31, 99, 133, 0.7); text-align:center;">Código de Vestimenta</h3>
         <div class="vestimenta-grid">
@@ -845,7 +1258,6 @@
         <p style="text-align:center; margin-top:10px;">Traje formal / elegante</p>
     </section>
 
-    <!-- REGALOS -->
     <section class="seccion regalos" id="regalos">
         <div class="cofre"><i class="fas fa-box-open"></i></div>
         <p style="font-weight: 700; font-size: 1.4rem; color: rgba(26, 78, 107, 0.7);">TU PRESENCIA ES MI MEJOR REGALO</p>
@@ -853,7 +1265,6 @@
         <div class="detalle-sobres"><i class="fas fa-envelope"></i> <i class="fas fa-envelope" style="margin:0 10px;"></i> <i class="fas fa-envelope"></i></div>
     </section>
 
-    <!-- CONFIRMAR -->
     <section class="seccion confirmar" id="confirmar">
         <div class="confirmar-overlay">
             <div class="corazones"><i class="fas fa-heart"></i> <i class="fas fa-heart" style="color:rgba(255, 143, 171, 0.8);"></i> <i class="fas fa-heart"></i></div>
@@ -881,7 +1292,6 @@
 
 <script>
     (function(){
-        // ---- MENÚ DESPLEGABLE ----
         const menuBtn = document.getElementById('menuBtn');
         const dropdown = document.getElementById('dropdownMenu');
         menuBtn.addEventListener('click', function(e){
@@ -894,31 +1304,41 @@
             }
         });
 
-        // ---- MÚSICA CON OVERLAY MEJORADO ----
         const bgMusic = document.getElementById('bgMusic');
         const musicToggle = document.getElementById('musicToggle');
-        const musicLabel = document.getElementById('musicLabel');
+        const musicIcon = document.getElementById('musicIcon');
+        const musicEstado = document.getElementById('musicEstado');
         const audioOverlay = document.getElementById('audioOverlay');
         const btnTocar = document.getElementById('btnTocarAudio');
         let musicOn = false;
 
-        // Función para iniciar la música
+        function actualizarBotonMusica(encendido) {
+            if (encendido) {
+                musicIcon.className = 'fas fa-volume-up';
+                musicEstado.textContent = 'ON';
+                musicEstado.className = 'estado on';
+                musicToggle.style.borderColor = 'rgba(76, 175, 80, 0.3)';
+            } else {
+                musicIcon.className = 'fas fa-music';
+                musicEstado.textContent = 'OFF';
+                musicEstado.className = 'estado off';
+                musicToggle.style.borderColor = 'rgba(255,255,255,0.1)';
+            }
+        }
+
         function iniciarMusica() {
             if (musicOn) return;
             
             bgMusic.play().then(() => {
                 musicOn = true;
-                musicLabel.textContent = 'On';
-                musicToggle.innerHTML = '<i class="fas fa-volume-up"></i> <span id="musicLabel">On</span>';
+                actualizarBotonMusica(true);
                 
-                // Ocultar el overlay con animación
                 audioOverlay.classList.add('oculto');
                 setTimeout(() => {
                     audioOverlay.style.display = 'none';
                 }, 800);
             }).catch((err) => {
                 console.log('Error al reproducir:', err);
-                // Si falla, mostramos un mensaje en el botón
                 btnTocar.innerHTML = '<i class="fas fa-redo"></i> Intentar de nuevo';
                 btnTocar.style.animation = 'shake 0.5s ease';
                 setTimeout(() => {
@@ -927,36 +1347,21 @@
             });
         }
 
-        // Evento del botón de tocar
-        btnTocar.addEventListener('click', function(e) {
-            e.stopPropagation();
-            iniciarMusica();
-        });
+        function pausarMusica() {
+            if (!musicOn) return;
+            bgMusic.pause();
+            musicOn = false;
+            actualizarBotonMusica(false);
+        }
 
-        // También al hacer clic en el overlay (fuera del botón)
-        audioOverlay.addEventListener('click', function(e) {
-            // Si el clic no fue en el botón, igual intentamos iniciar
-            if (e.target !== btnTocar && !btnTocar.contains(e.target)) {
-                iniciarMusica();
-            }
-        });
-
-        // Control manual del botón de música
-        musicToggle.addEventListener('click', function(e) {
-            e.stopPropagation();
-            
+        function toggleMusica() {
             if (musicOn) {
-                bgMusic.pause();
-                musicOn = false;
-                musicLabel.textContent = 'Música';
-                musicToggle.innerHTML = '<i class="fas fa-music"></i> <span id="musicLabel">Música</span>';
+                pausarMusica();
             } else {
                 bgMusic.play().catch(() => {});
                 musicOn = true;
-                musicLabel.textContent = 'On';
-                musicToggle.innerHTML = '<i class="fas fa-volume-up"></i> <span id="musicLabel">On</span>';
+                actualizarBotonMusica(true);
                 
-                // Si el overlay aún está visible, ocultarlo
                 if (!audioOverlay.classList.contains('oculto')) {
                     audioOverlay.classList.add('oculto');
                     setTimeout(() => {
@@ -964,16 +1369,30 @@
                     }, 800);
                 }
             }
+        }
+
+        btnTocar.addEventListener('click', function(e) {
+            e.stopPropagation();
+            iniciarMusica();
         });
 
-        // Si el usuario hace scroll o toca en la página, intentar iniciar (para móviles)
+        audioOverlay.addEventListener('click', function(e) {
+            if (e.target !== btnTocar && !btnTocar.contains(e.target)) {
+                iniciarMusica();
+            }
+        });
+
+        musicToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            toggleMusica();
+        });
+
         document.addEventListener('touchstart', function() {
             if (!musicOn && !audioOverlay.classList.contains('oculto')) {
                 iniciarMusica();
             }
         }, { once: true });
 
-        // ---- CONTADOR ----
         const targetDate = new Date('July 17, 2027 00:00:00').getTime();
 
         function actualizarContador() {
@@ -992,18 +1411,17 @@
 
             const msj = document.getElementById('mensajeDia');
             if (dias > 30) msj.textContent = '💖 ¡Falta un poco, pero la emoción crece!';
-            else if (dias > 15) msj.textContent = '🌸 ¡Ya falta menos! Cada día cuenta.';
+            else if (dias > 15) msj.textContent = ' ¡Ya falta menos! Cada día cuenta.';
             else if (dias > 7) msj.textContent = '✨ ¡La espera se siente!';
             else if (dias > 1) msj.textContent = '🎉 ¡Muy pronto será el gran día!';
             else if (dias === 1) msj.textContent = '💫 ¡Mañana es el día!';
-            else if (dias === 0 && (horas > 0 || minutos > 0)) msj.textContent = '🎊 ¡Hoy es el gran día!';
-            else if (distancia === 0) msj.textContent = '🎂 ¡Felices XV años, Karla!';
+            else if (dias === 0 && (horas > 0 || minutos > 0)) msj.textContent = ' ¡Hoy es el gran día!';
+            else if (distancia === 0) msj.textContent = ' ¡Felices XV años, Karla!';
         }
 
         actualizarContador();
         setInterval(actualizarContador, 1000);
 
-        // Animación shake para el botón si falla
         const style = document.createElement('style');
         style.textContent = `
             @keyframes shake {
@@ -1013,6 +1431,8 @@
             }
         `;
         document.head.appendChild(style);
+
+        actualizarBotonMusica(true);
     })();
 </script>
 </body>
