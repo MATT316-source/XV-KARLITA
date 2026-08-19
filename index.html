@@ -246,7 +246,6 @@
             100% { opacity: 0.8; transform: scale(1.2) rotate(5deg); }
         }
 
-        /* CALENDARIO ESTILOS */
         .calendario-container {
             background: linear-gradient(135deg, rgba(227, 242, 253, 0.8), rgba(187, 222, 251, 0.6));
             border-radius: 32px;
@@ -343,7 +342,6 @@
             50% { transform: scale(1.3); }
         }
 
-        /* CARTA ELEGANTE */
         .carta-container {
             position: relative;
             padding: 20px 10px 30px;
@@ -366,7 +364,6 @@
             border: 2px solid rgba(187, 222, 251, 0.5);
         }
 
-        /* Mariposas en las esquinas - AZULES */
         .esquina-mariposa {
             position: absolute;
             width: 35px;
@@ -408,7 +405,6 @@
             50% { transform: translateY(-5px) rotate(5deg); }
         }
 
-        /* Decoración superior */
         .carta-decoracion-superior {
             text-align: center;
             margin-bottom: 20px;
@@ -451,7 +447,6 @@
             letter-spacing: 2px;
         }
 
-        /* Contenido del mensaje */
         .carta-contenido {
             text-align: center;
             margin: 24px 0;
@@ -485,7 +480,6 @@
             margin-left: 8px;
         }
 
-        /* Firma */
         .carta-firma {
             text-align: center;
             margin-top: 24px;
@@ -508,7 +502,6 @@
             text-shadow: 0 2px 12px rgba(100, 181, 246, 0.2);
         }
 
-        /* Sello de cera AZUL */
         .sello-cera {
             position: absolute;
             bottom: -25px;
@@ -554,7 +547,6 @@
             }
         }
 
-        /* Mariposas decorativas flotantes - AZULES */
         .decoracion-mariposas {
             margin-top: 30px;
             display: flex;
@@ -581,7 +573,6 @@
             50% { transform: translateY(-12px) rotate(10deg); }
         }
 
-        /* Animación de entrada */
         .carta-marco {
             animation: carta-aparece 1s ease-out;
         }
@@ -684,11 +675,11 @@
         }
         .lugar-item img {
             width: 100%;
-            height: 140px;
-            object-fit: cover;
-            border-radius: 30px;
+            height: 200px;
+            object-fit: contain;
+            border-radius: 999px;
             margin-bottom: 8px;
-            background: rgba(179, 211, 234, 0.2);
+            background: rgba(179, 211, 234, 0.15);
         }
         .lugar-item h4 {
             color: rgba(30, 90, 122, 0.7);
@@ -1166,13 +1157,11 @@
 
         <div class="carta-container">
             <div class="carta-marco">
-                <!-- Mariposas AZULES en las esquinas -->
                 <div class="esquina-mariposa top-left"></div>
                 <div class="esquina-mariposa top-right">🦋</div>
                 <div class="esquina-mariposa bottom-left">🦋</div>
                 <div class="esquina-mariposa bottom-right"></div>
 
-                <!-- Decoración superior -->
                 <div class="carta-decoracion-superior">
                     <div class="linea-ornamento">
                         <div class="linea"></div>
@@ -1183,7 +1172,6 @@
                     <div class="carta-subtitulo"> MIS QUINCE AÑOS ✦</div>
                 </div>
 
-                <!-- Contenido del mensaje -->
                 <div class="carta-contenido">
                     <p class="carta-texto">
                         Me haría mucha ilusión que me acompañes a celebrar mis XV años. 
@@ -1193,19 +1181,16 @@
                     </p>
                 </div>
 
-                <!-- Firma -->
                 <div class="carta-firma">
                     <div class="con-cariño">Con todo mi cariño,</div>
                     <div class="nombre">Karla Mayté</div>
                 </div>
 
-                <!-- Sello de cera AZUL -->
                 <div class="sello-cera">
                     <i class="fas fa-heart"></i>
                 </div>
             </div>
 
-            <!-- Mariposas AZULES decorativas flotantes -->
             <div class="decoracion-mariposas">
                 <span class="mariposa">🦋</span>
                 <span class="mariposa">🦋</span>
@@ -1232,11 +1217,11 @@
         <h2 style="font-family: 'Great Vibes', cursive; font-size: 2.4rem; color: rgba(31, 99, 133, 0.7); text-align:center;">¿Cuándo y Dónde?</h2>
         <div class="lugar">
             <div class="lugar-item">
-                <img src="https://images.pexels.com/photos/260922/pexels-photo-260922.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Iglesia">
+                <img src="MISA.webp" alt="Iglesia">
                 <h4>MISA</h4>
-                <p>Parroquia San Miguel Arcángel</p>
-                <p>Calle Principal 123, Ciudad</p>
-                <a href="https://maps.google.com/?q=Parroquia+San+Miguel+Arcángel" target="_blank"><i class="fas fa-map-marked-alt"></i> Google Maps</a>
+                <p>Rectoria de Nuestra Señora de la Soledad</p>
+                <p>Avenida San Juan Pablo Segundo 1000, Santa Maria de Guido, 58090 Morelia, Mich.</p>
+                <a href="https://maps.app.goo.gl/PV5nbi9QfJk2AhuF7" target="_blank"><i class="fas fa-map-marked-alt"></i> Google Maps</a>
             </div>
             <div class="lugar-item">
                 <img src="hotel villa san jose.jpg" alt="Salón Fiesta">
