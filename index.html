@@ -687,6 +687,11 @@
         .lugar-item p {
             color: rgba(31, 85, 115, 0.6);
         }
+        .lugar-item .hora {
+            font-weight: 700;
+            color: rgba(194, 65, 102, 0.8);
+            margin: 4px 0;
+        }
         .lugar-item a {
             display: inline-block;
             background: rgba(88, 147, 179, 0.6);
@@ -1089,7 +1094,7 @@
         <div class="contenido-inferior">
             <div class="texto-15">MIS XV AÑOS</div>
             <div class="separador-estrella">  </div>
-            <div class="fecha-inferior">17 de Julio de 2027</div>
+            <div class="fecha-inferior">24 de Julio de 2027</div>
         </div>
     </section>
 
@@ -1119,9 +1124,10 @@
                 <span>D</span><span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span>
             </div>
             <div class="calendario-grid">
+                <span class="dia-inactivo">28</span>
                 <span class="dia-inactivo">29</span>
                 <span class="dia-inactivo">30</span>
-                <span>1</span>
+                <span class="dia-inactivo">1</span>
                 <span>2</span>
                 <span>3</span>
                 <span>4</span>
@@ -1137,14 +1143,14 @@
                 <span>14</span>
                 <span>15</span>
                 <span>16</span>
-                <span class="dia-especial">17<span class="corazon">♥</span></span>
+                <span>17</span>
                 <span>18</span>
                 <span>19</span>
                 <span>20</span>
                 <span>21</span>
                 <span>22</span>
                 <span>23</span>
-                <span>24</span>
+                <span class="dia-especial">24<span class="corazon">♥</span></span>
                 <span>25</span>
                 <span>26</span>
                 <span>27</span>
@@ -1219,6 +1225,7 @@
             <div class="lugar-item">
                 <img src="MISA.webp" alt="Iglesia">
                 <h4>MISA</h4>
+                <p class="hora">🕊️ 6:30 PM</p>
                 <p>Rectoria de Nuestra Señora de la Soledad</p>
                 <p>Avenida San Juan Pablo Segundo 1000, Santa Maria de Guido, 58090 Morelia, Mich.</p>
                 <a href="https://maps.app.goo.gl/PV5nbi9QfJk2AhuF7" target="_blank"><i class="fas fa-map-marked-alt"></i> Google Maps</a>
@@ -1226,6 +1233,7 @@
             <div class="lugar-item">
                 <img src="hotel villa san jose.jpg" alt="Salón Fiesta">
                 <h4>FIESTA</h4>
+                <p class="hora">🎉 8:00 PM</p>
                 <p>Villa San José Hotel & Suites</p>
                 <p>Patzimba 77, Vista Bella, 58090 Morelia, Mich.</p>
                 <a href="https://maps.app.goo.gl/jRb65b1CdLLYxMHH6" target="_blank"><i class="fas fa-map-marked-alt"></i> Google Maps</a>
@@ -1378,7 +1386,8 @@
             }
         }, { once: true });
 
-        const targetDate = new Date('July 17, 2027 00:00:00').getTime();
+        // Fecha actualizada: 24 de Julio de 2027
+        const targetDate = new Date('July 24, 2027 00:00:00').getTime();
 
         function actualizarContador() {
             const ahora = new Date().getTime();
